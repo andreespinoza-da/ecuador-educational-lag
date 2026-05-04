@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ecuador: Rezago Escolar por Nivel Educativo (2003–2017)</title>
+
+  <!-- fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+  <!-- D3 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="page">
+
+<div class="controls" style="margin-bottom: 24px;">
+
+  <!-- globe icon -->
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-muted); flex-shrink:0;">
+    <circle cx="12" cy="12" r="10"/>
+    <line x1="2" y1="12" x2="22" y2="12"/>
+    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+  </svg>
+
+  <div class="btn-group">
+
+    <!-- Ecuador flag + ES -->
+    <button class="btn lang-btn active" data-lang="es" style="display:flex; align-items:center; gap:6px;">
+      <svg width="20" height="14" viewBox="0 0 20 14" style="border-radius:2px; flex-shrink:0;">
+        <rect width="20" height="5"  y="0" fill="#FFD100"/>
+        <rect width="20" height="4"  y="5" fill="#034EA2"/>
+        <rect width="20" height="5"  y="9" fill="#EF3340"/>
+      </svg>
+      ES
+    </button>
+
+    <!-- Canada flag + EN -->
+    <button class="btn lang-btn" data-lang="en" style="display:flex; align-items:center; gap:6px;">
+      <svg width="20" height="14" viewBox="0 0 20 14" style="border-radius:2px; flex-shrink:0;">
+        <rect width="20" height="14" fill="#FF0000"/>
+        <rect x="5" width="10" height="14" fill="white"/>
+        <text x="10" y="10" text-anchor="middle" font-size="9" fill="#FF0000">🍁</text>
+      </svg>
+      EN
+    </button>
+
+  </div>
+</div>
+
+  <!-- header -->
+  <header class="header">
+    <p class="header__eyebrow" data-i18n="eyebrow"></p>
+    <h1 class="header__title" data-i18n="title"></h1>
+    <p class="header__subtitle" data-i18n="subtitle"></p>
+  </header>
+
+  <!-- area selector -->
+  <div class="controls">
+    <span class="controls__label" data-i18n="area_label"></span>
+    <button class="btn area-btn active" data-area="nacional" data-i18n="nacional">Nacional</button>
+    <button class="btn area-btn" data-area="urbano" data-i18n="urbano">Urbano</button>
+    <button class="btn area-btn" data-area="rural" data-i18n="rural">Rural</button>
+  </div>
+
+
+
+  <!-- 2×2 grid -->
+  <div class="charts-grid">
+
+    <div class="chart-card">
+      <div class="chart-card__title" data-i18n="level_primaria"></div>
+      <div class="chart-card__meta"  data-i18n="ages_primaria"></div>
+      <svg class="chart-svg" id="chart-Primaria" width="100%" height="260"></svg>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-card__title" data-i18n="level_egb"></div>
+      <div class="chart-card__meta"  data-i18n="ages_egb"></div>
+      <svg class="chart-svg" id="chart-EGB" width="100%" height="260"></svg>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-card__title" data-i18n="level_sec"></div>
+      <div class="chart-card__meta"  data-i18n="ages_sec"></div>
+      <svg class="chart-svg" id="chart-Secundaria" width="100%" height="260"></svg>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-card__title" data-i18n="level_bach"></div>
+      <div class="chart-card__meta"  data-i18n="ages_bach"></div>
+      <svg class="chart-svg" id="chart-Bachillerato" width="100%" height="260"></svg>
+    </div>
+
+  </div>
+
+  <!-- shared legend -->
+  <div class="legend">
+    <div class="legend__item">
+      <div class="legend__swatch legend__swatch--tba"></div>
+      <span data-i18n="legend_tba"></span>
+    </div>
+    <div class="legend__item">
+      <div class="legend__swatch legend__swatch--tna"></div>
+      <span data-i18n="legend_tna"></span>
+    </div>
+    <div class="legend__item">
+      <div class="legend__swatch legend__swatch--band"></div>
+      <span data-i18n="legend_band"></span>
+    </div>
+    <div class="legend__item">
+      <div class="legend__swatch legend__swatch--100"></div>
+      <span data-i18n="legend_100"></span>
+    </div>
+  </div>
+
+  <!-- footnote -->
+  <footer class="footnote">
+    <p data-i18n="footnote_1"></p>
+    <p data-i18n="footnote_2"></p>
+</footer>
+
+</div>
+
+<!-- tooltip (shared, outside grid) -->
+<div class="tooltip" id="tooltip"></div>
+
+<script src="chart.js"></script>
+</body>
+</html>
